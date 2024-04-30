@@ -136,12 +136,9 @@ This is still not sufficient; language is creative and we won't always be able t
 
 We'll need more clever ways to estimate $P(w|h)$. If we instead change contexts to representing the probability of a sequence of $n$ words $w_{1}, \dots, w_{2}$. If we want to predict the probability of $P(\text{the})$, we can write it as $P(X_{i}=\text{"the"})$. So the probability of a sequence of words can be written both as $$P(X_{1}= w_{1}, X_{2}= w_{2}, \dots, X_{n}= w_{n})$$ and $P(w_{1}, w_{2}, \dots, w_{n})$ or $P(w_{1:n})$.
 
-We can now use the *chain rule* to decompose this probability: $$
-\begin{eqnarray}
-P(w_{1}, \dots, w_{n}) &=& P(w_{1})P(w_{2}|w_{1})P(w_{3}|w_{1:2})\dots P(w_{n}|w_{1:n-1}) \\
-&=& \displaystyle\prod_{i=1}^n{P(w_{i}|w_{1}, w_{2}, \dots, w_{i-1})}
-\end{eqnarray}
-$$
+We can now use the *chain rule* to decompose this probability: $$\begin{eqnarray}
+P(w_{1}, \dots, w_{n}) &=& P(w_{1})P(w_{2}|w_{1})P(w_{3}|w_{1:2})\dots P(w_{n}|w_{1:n-1}) \\&=& \displaystyle\prod_{i=1}^n{P(w_{i}|w_{1}, w_{2}, \dots, w_{i-1})}
+\end{eqnarray}$$
 A **bigram** model ($n=2$), for example, approximates the probability of a word by *only using* the conditional probability of the preceding word; we would approximate the above transparent water example with $$P(\text{the|that})$$
 This assumption that we can reasonably estimate the probability of a word based on only the prior is called a **Markov** assumption. N-grams make a Markov assumption that we only need to look $n-1$ words into the past. For n-gram size $N$, $$P(w_{n}|w_{1:n-1})\approx P(w_{n}|w_{n-N+1:n-1})$$
 However, given the *bigram assumption for the probability* of an individual word, we can compute the probability of a **complete word sequence** by substituting this into our original equation to get $$P(w_{1:n})\approx \displaystyle\prod^{n}_{k=1}P(w_{k}|w_{k-1})$$
