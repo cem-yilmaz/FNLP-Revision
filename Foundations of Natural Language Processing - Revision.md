@@ -303,8 +303,7 @@ A method of calculating this probability would be to use *relative frequency cou
 \begin{eqnarray}
 P(\text{the|its water is so transparent that}) =\\
 \frac{C(\text{its water is so transparent that the})}{C(\text{its water is so transparent that})}
-\end{eqnarray}
-$$
+\end{eqnarray}$$
 This is still not sufficient; language is creative and we won't always be able to count entire sentences.
 
 We'll need more clever ways to estimate $P(w|h)$. If we instead change contexts to representing the probability of a sequence of $n$ words $w_{1}, \dots, w_{2}$. If we want to predict the probability of $P(\text{the})$, we can write it as $P(X_{i}=\text{"the"})$. So the probability of a sequence of words can be written both as $$P(X_{1}= w_{1}, X_{2}= w_{2}, \dots, X_{n}= w_{n})$$ and $P(w_{1}, w_{2}, \dots, w_{n})$ or $P(w_{1:n})$.
